@@ -1,0 +1,137 @@
+
+.container {
+    height: 100%;
+    display: grid; /*configuração para formato de tabela*/
+    justify-content: center;
+    text-align: center;
+    grid-gap: 20px 20px;
+
+    /*
+    esse comando cria um modelo de estrutura
+    para a estrutura use os ids dos elementos
+    e os separe.
+    Obs: para funcionar tem que sinalizar os ids de cada elemento 
+    no css*/
+
+    grid-template-areas:
+        "header header"
+        "content sidebar"
+        "footer footer";
+}
+
+/*sinalizando ids de cada elemento para o template*/
+#header {
+    grid-area: header;
+}
+
+/*sinalizando ids de cada elemento para o template*/
+#content {
+    grid-area: content;
+}
+
+/*sinalizando ids de cada elemento para o template*/
+#sidebar {
+    grid-area: sidebar;
+}
+
+/*sinalizando ids de cada elemento para o template*/
+#footer {
+    grid-area: footer;
+}
+
+.container div {
+    padding: 40px;
+    color: aliceblue;
+    background-color: brown;
+    border-radius: 4px;
+}
+
+/*
+
+.container {
+    display: grid; /*configuração para formato de tabela
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+
+    /*minmax(valor minimo, valor maximo)*/
+    /*grid-template-columns: repeat(3, minmax(100px, 200px)); /*tamanho e numero de colunas*/
+    
+    /*repeat resume as propriedades nesta sintaxe: repeat(qntde de elementos, tamanho de cada elemento)*/
+    /*grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px); /* tamanho de uma linha de elementos da tabela grid*/
+    
+    /*fr funciona como uma fatia, a soma e a quantidade total de fatias representam porcentagens*/
+    /*ex: 1fr   1fr    2fr  -> 5fr*/
+    /*    25%   25%    50% = 100% -> 5fr*/
+    /*grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 100px);
+    
+
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+
+    /*gap: 10px; /*espacamento geral(colunas, linhas) entre cada retangulo da tabela grid 
+    grid-gap: 10px 15px; /*espacamento com tamanho: (colunas, linhas)
+    grid-row-gap: 10px; /*espacamento entre todas as linhas do grid
+    grid-column-gap: 30px; espacamento entre todas as colunas do grid*/
+
+    /*exemplos de alinhamento*/
+    /*pilares esquerdo e direito nos cantos e um no meio*
+    justify-content: space-between;
+    align-content: space-between;*/
+
+    /*pilares esquerdo e direito aproximados ao meio/
+    justify-content: space-around;
+    align-content: space-around;
+    */
+
+    /*pilares se juntam de acordo com o zoom/tamanho da tela/
+    justify-content: space-evenly;
+    align-content: space-evenly;*/
+
+    /*pilares se juntam no centro da tela
+    justify-content: center;
+    align-content: center;
+}
+
+#box-1 {
+    /*de forma mais simples, a linhas invisiveis
+    que delimitam a forma de acordo com o
+    tamanho do inicio e fim. Tais linhas começam e terminam
+    das partes de fora da forma envolvendo o grid*/
+
+    /*coluna aonde a caixa irá começar
+    grid-column-start: 1;
+    /*as formas 1,2 e 3 serão ocupadas*/
+    /*a forma 4 vai estar livre para as demais formas
+    grid-column-end: 4;/*forma delimitando a caixa, a forma 4 irá ceder espaço livre para as demais formas do grid
+}
+
+#box-2 {
+    grid-row-start: 2;
+    grid-row-end: 6;
+}
+
+#box-3 {
+    é possível fazer sub-divisoes
+    grid-column: 2 / 4;
+    grid-row: 2 / 6;
+}
+
+#box-4 {
+    é possível determinar row e column start + row e column end 
+     1° -> grid row start
+     2° -> grid column start
+     3° -> grid row end
+     4° -> grid column end
+    grid-area: 6 / 1 / 8 / 4;
+}
+
+.container div {
+    padding: 40px;
+    color: aliceblue;
+    background-color: brown;
+    border-radius: 4px;
+}
+*/
