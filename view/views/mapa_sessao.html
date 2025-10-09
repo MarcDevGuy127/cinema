@@ -1,27 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Grid Layout Tutorial</title>
-        <link rel="stylesheet" href="css/mapa_sessao.css">
-    </head>
-    <body>
-        <div class="container">
-            <div id="header">Header</div>
-            <div id="content">Content</div>
-            <div id="sidebar">Sidebar</div>
-            <div id="footer">Footer</div>
-            
-            <!--div id="box-1">1</div>
-            <div id="box-2">2</div>
-            <div id="box-3">3</div>
-            <div id="box-4">4</div>
-            <div id="box-5">5</div>
-            <div id="box-6">6</div>
-            <div id="box-7">7</div>
-            <div id="box-8">8</div>
-            <div id="box-9">9</div-->
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa da Sessão</title>
+    <link rel="stylesheet" href="./css/mapa_sessao.css" />
+  </head>
+  <body>
+    <div class="secao_superior">
+      <h1>Mapa da Sessão</h1>
+      <p>Escolha a(s) poltrona(s) que você deseja reservar!</p>
+    </div>
+    <div class="container1">
+      <div class="poltronas_esquerda">
+        <div class="eixo_superior">
+          <span>1</span>
+          <span>2</span>
         </div>
-    </body>
+        <div class="eixo_lateral">
+          <span>A</span>
+          <span>B</span>
+          <span>C</span>
+          <span>D</span>
+          <span>E</span>
+        </div>
+        <div class="poltrona">A1</div>
+        <div class="poltrona">A2</div>
+
+        <div class="poltrona">B1</div>
+        <div class="poltrona">B2</div>
+
+        <div class="poltrona">C1</div>
+        <div class="poltrona">C2</div>
+
+        <div class="poltrona">D1</div>
+        <div class="poltrona">D2</div>
+
+        <div class="poltrona">E1</div>
+        <div class="poltrona">E2</div>
+      </div>
+
+      <div class="poltronas_centro">
+        <div class="eixo_superior">
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+          <span>11</span>
+          <span>12</span>
+          <span>13</span>
+          <span>14</span>
+        </div>
+        <div class="poltrona">A3</div>
+        <div class="poltrona">A4</div>
+        <div class="poltrona">A5</div>
+        <div class="poltrona">A6</div>
+        <div class="poltrona">A7</div>
+        <div class="poltrona">A8</div>
+        <div class="poltrona">A9</div>
+        <div class="poltrona">A10</div>
+        <div class="poltrona">A11</div>
+        <div class="poltrona">A12</div>
+        <div class="poltrona">A13</div>
+        <div class="poltrona">A14</div>
+
+        <div class="poltrona">B3</div>
+        <div class="poltrona">B4</div>
+        <div class="poltrona">B5</div>
+        <div class="poltrona">B6</div>
+        <div class="poltrona">B7</div>
+        <div class="poltrona">B8</div>
+        <div class="poltrona">B9</div>
+        <div class="poltrona">B10</div>
+        <div class="poltrona">B11</div>
+        <div class="poltrona">B12</div>
+        <div class="poltrona">B13</div>
+        <div class="poltrona">B14</div>
+
+        <div class="poltrona">C3</div>
+        <div class="poltrona">C4</div>
+        <div class="poltrona">C5</div>
+        <div class="poltrona">C6</div>
+        <div class="poltrona">C7</div>
+        <div class="poltrona">C8</div>
+        <div class="poltrona">C9</div>
+        <div class="poltrona">C10</div>
+        <div class="poltrona">C11</div>
+        <div class="poltrona">C12</div>
+        <div class="poltrona">C13</div>
+        <div class="poltrona">C14</div>
+
+        <div class="poltrona">D3</div>
+        <div class="poltrona">D4</div>
+        <div class="poltrona">D5</div>
+        <div class="poltrona">D6</div>
+        <div class="poltrona">D7</div>
+        <div class="poltrona">D8</div>
+        <div class="poltrona">D9</div>
+        <div class="poltrona">D10</div>
+        <div class="poltrona">D11</div>
+        <div class="poltrona">D12</div>
+        <div class="poltrona">D13</div>
+        <div class="poltrona">D14</div>
+
+        <div class="poltrona">E3</div>
+        <div class="poltrona">E4</div>
+        <div class="poltrona">E5</div>
+        <div class="poltrona">E6</div>
+        <div class="poltrona">E7</div>
+        <div class="poltrona">E8</div>
+        <div class="poltrona">E9</div>
+        <div class="poltrona">E10</div>
+        <div class="poltrona">E11</div>
+        <div class="poltrona">E12</div>
+        <div class="poltrona">E13</div>
+        <div class="poltrona">E14</div>
+
+        <div id="tela"></div>
+      </div>
+
+      <div class="poltronas_direita">
+        <div class="eixo_superior">
+          <span>15</span>
+          <span>16</span>
+        </div>
+        <div class="poltrona">A15</div>
+        <div class="poltrona">A16</div>
+
+        <div class="poltrona">B15</div>
+        <div class="poltrona">B16</div>
+        
+        <div class="poltrona">C15</div>
+        <div class="poltrona">C16</div>
+        
+        <div class="poltrona">D15</div>
+        <div class="poltrona">D16</div>
+        
+        <div class="poltrona">E15</div>
+        <div class="poltrona">E16</div>
+      </div>
+    </div>
+    <div class="placar">
+      <div class="poltrona_livre"></div>
+      <p>Livre(s)</p>
+      <div class="poltrona_ocupada"></div>
+      <p>Ocupada(s)</p>
+
+      <div class="poltrona_especial"></div>
+      <p>Especial</p>
+
+      <div class="parametros">
+        <p id="parametros">Total: <valor id="valor_parametro">80</valor></p>
+        <p id="parametros">Livre(s): <valor id="valor_parametro">80</valor></p>
+        <p id="parametros">Ocupada(s): <valor id="valor_parametro">0</valor></p>
+      </div>
+    </div>
+    <footer>
+      <p>
+        &copy; Desenvolvido por
+        <a href="https://www.github.com/MarcDevGuy127">Marcelo Henrique</a>.
+      </p>
+    </footer>
+  </body>
 </html>
