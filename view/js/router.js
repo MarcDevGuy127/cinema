@@ -3,6 +3,7 @@ import { MarketingController } from './controllers/MarketingController.js';
 import { SupportController } from './controllers/SupportController.js';
 import { AuthController } from './controllers/AuthController.js';
 import { AdminController } from './controllers/AdminController.js';
+//import { MapaSessaoController } from './controllers/MapaSessaoController.js';
 
 const routes = {
   '/marketing': { view: 'marketing', controller: MarketingController },
@@ -10,6 +11,7 @@ const routes = {
   '/cadastro': { view: 'cadastro', controller: AuthController },
   '/redirecionamento': { view: 'redirecionamento', controller: AuthController },
   '/admin': { view: 'admin', controller: AdminController }
+  //,'/mapa_sessao': { view: 'mapa_sessao', controller: MapaSessaoController }
 };
 
 export async function mountShell(){
