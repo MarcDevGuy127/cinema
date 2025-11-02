@@ -6,7 +6,7 @@ class CreateUserService {
     private $conn;
 
     public function __construct() {
-        $this->conn = Connection::getConnection(); 
+        $this->conn = Connection::getConnection();
     }
 
     public function criarUsuario($nome, $email, $senha, $cpf, $role = 'cliente') {

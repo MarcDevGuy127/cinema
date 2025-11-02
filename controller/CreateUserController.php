@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($resultado === true) {
         echo "Usuário criado com sucesso!";
     } else {
-        echo $resultado; 
+        echo $resultado;
     }
 } else {
     echo "Método inválido.";
