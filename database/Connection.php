@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../../config/loadEnv.php';
-loadEnv(__DIR__ . '/../../.env');
+require_once __DIR__ . '/../config/loadEnv.php';
+loadEnv(__DIR__ . '/../.env');
 
 class Connection {
     private static $conn;
