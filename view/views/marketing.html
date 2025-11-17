@@ -1,32 +1,88 @@
-
 <section class="grid grid-3">
+
   <div class="card" style="grid-column:1 / -1">
     <div class="banner" id="hero-banner">
-      <h2>Estreias da Semana • Compre seu ingresso</h2>
+      <h2>🎬 Estreias da Semana • Compre seu ingresso</h2>
       <div class="dots" id="banner-dots"></div>
     </div>
   </div>
 
   <div class="card" style="grid-column:1 / -1">
-    <div class="tabs" id="promo-tabs"></div>
-    <div class="grid grid-3" id="promo-cards"></div>
+    <h2>Filmes em Cartaz</h2>
+    <section class="grade-filmes">
+      <div class="filme">
+        <img src="../view/img/astro-noir.png" alt="Astro Noir">
+        <h3>Astro Noir</h3>
+        <p>Gênero: Ficção Científica</p>
+        <p>Classificação: 14 anos</p>
+        <p>Duração: 2h 05min</p>
+        <button class="btn-primary">Comprar</button>
+      </div>
+
+      <div class="filme">
+        <img src="../view/img/cavaleiros-tempo.png" alt="Cavaleiros do Tempo">
+        <h3>Cavaleiros do Tempo</h3>
+        <p>Gênero: Aventura</p>
+        <p>Classificação: Livre</p>
+        <p>Duração: 1h 50min</p>
+        <button class="btn-primary">Comprar</button>
+      </div>
+
+      <div class="filme">
+        <img src="../view/img/pipoca-cosmica.png" alt="Pipoca Cósmica">
+        <h3>Pipoca Cósmica</h3>
+        <p>Gênero: Comédia</p>
+        <p>Classificação: 12 anos</p>
+        <p>Duração: 1h 40min</p>
+        <button class="btn-primary">Comprar</button>
+      </div>
+
+      <div class="filme">
+        <img src="../view/img/neve-vermelha.png" alt="Neve Vermelha">
+        <h3>Neve Vermelha</h3>
+        <p>Gênero: Suspense</p>
+        <p>Classificação: 16 anos</p>
+        <p>Duração: 2h 15min</p>
+        <button class="btn-primary">Comprar</button>
+      </div>
+
+      <div class="filme">
+        <img src="../view/img/o-duble-do-heroi.png" alt="O Dublê do Herói">
+        <h3>O Dublê do Herói</h3>
+        <p>Gênero: Ação</p>
+        <p>Classificação: 14 anos</p>
+        <p>Duração: 1h 55min</p>
+        <button class="btn-primary">Comprar</button>
+      </div>
+
+      <div class="filme">
+        <img src="../view/img/cidade-submersa.png" alt="Cidade Submersa">
+        <h3>Cidade Submersa</h3>
+        <p>Gênero: Drama</p>
+        <p>Classificação: 12 anos</p>
+        <p>Duração: 2h 10min</p>
+        <button class="btn-primary">Comprar</button>
+      </div>
+    </section>
   </div>
 
-  <div class="card">
-    <h3>Campanha do Mês</h3>
-    <p class="helper">Compre 2 ingressos e ganhe pipoca média grátis.</p>
+  <div class="banner-lateral">
+    <h3>🍿 Campanha do Mês</h3>
+    <p class="helper">Compre 2 ingressos e ganhe 1 pipoca média grátis!</p>
+    <img src="../view/img/campanha.png" alt="Em Breve">
     <button class="btn-primary">Ver Regras</button>
   </div>
 
-  <div class="card grid-2" style="grid-column:1 / -1">
-    <div class="card">
-      <h3>Banner Lateral</h3>
-      <p class="helper">Espaço para anúncio ou destaque.</p>
-    </div>
-    <div class="card">
-      <h3>Newsletter</h3>
-      <p class="helper">Receba ofertas e lançamentos.</p>
-      <input placeholder="Seu email" />
+<div class="banner-lateral">
+  <h3>🎥 Em breve</h3>
+  <p class="helper">A Ascensão de Aegis — estreia 20/12!</p>
+  <img src="../view/img/Ascensão.png" alt="Em Breve">
+</div>
+    <div class="banner-lateral">
+      <h3>📬 Newsletter</h3>
+      <p class="helper">Assine para receber promoções e lançamentos.</p>
+      <img src="../view/img/logocinema.png" alt="Em Breve">
+      <input type="email" placeholder="Seu email" id="news-email" />
       <button class="btn-primary" id="btn-news">Assinar</button>
     </div>
   </div>
