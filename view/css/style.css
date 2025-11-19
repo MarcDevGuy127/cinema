@@ -249,3 +249,68 @@ footer{
   color:var(--muted);
   text-align:center
 }
+
+.grade-filmes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.filme {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.filme:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(127, 179, 255, 0.3);
+}
+
+.filme img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.filme h3 {
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.filme p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 2px 0;
+}
+
+.filme .btn-primary {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.poster {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  background: #0d1117;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.banner-lateral img{
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 12px;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;   /* garante que todas fiquem iguais */
+  border: 1px solid var(--border);
+  background: #0d1217;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
