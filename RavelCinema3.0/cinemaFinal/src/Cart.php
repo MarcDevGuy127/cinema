@@ -5,6 +5,46 @@ require_once __DIR__ . '/Response.php';
 
 final class Cart {
 
+  // 🔹 LIMPA RESERVAS VENCIDAS (ex: mais de 15 minutos)
+  private static function cleanupExpired(PDO $pdo, int $minutos = 15): void {
+    // Seleciona assentos reservados há mais de X minutos
+    $sqlSel = "
+      SELECT a.id AS assento_id, i.id AS ingresso_id, c.id AS carrinho_id
+        FROM assento a
+        JOIN ingresso i ON i.assento = a.id
+        JOIN carrinho c ON c.ingresso = i.id
+       WHERE a.status = 1
+         AND a.reservado_em IS NOT NULL
+         AND a.reservado_em < (NOW() - INTERVAL :mins MINUTE)
+    ";
+    $st = $pdo->prepare($sqlSel);
+    $st->execute([':mins' => $minutos]);
+    $rows = $st->fetchAll();
+
+    if (!$rows) {
+      return;
+    }
+
+    $idsAssentos  = array_map('intval', array_column($rows, 'assento_id'));
+    $idsIngressos = array_map('intval', array_column($rows, 'ingresso_id'));
+    $idsCarrinho  = array_map('intval', array_column($rows, 'carrinho_id'));
+
+    // Libera assentos
+    $phA = implode(',', array_fill(0, count($idsAssentos), '?'));
+    $updA = $pdo->prepare("UPDATE assento SET status = 0, reservado_em = NULL WHERE id IN ($phA)");
+    $updA->execute($idsAssentos);
+
+    // Remove carrinho
+    $phC = implode(',', array_fill(0, count($idsCarrinho), '?'));
+    $delC = $pdo->prepare("DELETE FROM carrinho WHERE id IN ($phC)");
+    $delC->execute($idsCarrinho);
+
+    // Remove ingressos pendentes
+    $phI = implode(',', array_fill(0, count($idsIngressos), '?'));
+    $delI = $pdo->prepare("DELETE FROM ingresso WHERE id IN ($phI)");
+    $delI->execute($idsIngressos);
+  }
+
   // POST /cart/add  { "usuario_id":1, "sessao_id":10, "assento_id":55 }
   public static function add(): void {
     $in = json_decode(file_get_contents('php://input'), true) ?: $_POST;
@@ -19,14 +59,42 @@ final class Cart {
     try {
       $pdo->beginTransaction();
 
+      // 🔹 limpa reservas vencidas antes de qualquer coisa
+      self::cleanupExpired($pdo);
+
+      // 🔹 LIMITE DE ASSENTOS POR SESSÃO POR USUÁRIO
+      $LIMITE_ASSENTOS_SESSAO = 5; // ajuste aqui se quiser outro valor
+
+      $countSql = "SELECT COUNT(*) AS q
+                     FROM carrinho c
+                     JOIN ingresso i ON i.id = c.ingresso
+                    WHERE c.usuario = ? AND i.sessao = ?";
+      $countSt = $pdo->prepare($countSql);
+      $countSt->execute([$usuarioId, $sessaoId]);
+      $jaNoCarrinho = (int)$countSt->fetch()['q'];
+
+      if ($jaNoCarrinho >= $LIMITE_ASSENTOS_SESSAO) {
+        $pdo->rollBack();
+        Response::error(
+          "Limite de {$LIMITE_ASSENTOS_SESSAO} assentos por sessão atingido para este usuário.",
+          409
+        );
+      }
+
       // Lock do assento
       $lock = $pdo->prepare('SELECT id, status FROM assento WHERE id = ? AND sessao = ? FOR UPDATE');
       $lock->execute([$assentoId, $sessaoId]);
       $as = $lock->fetch();
-      if (!$as) { $pdo->rollBack(); Response::error('Assento não encontrado para essa sessão', 404); }
-      if ($as['status'] !== 'LIVRE') {
+      if (!$as) {
         $pdo->rollBack();
-        Response::error('Assento não está LIVRE', 409, ['status_atual' => $as['status']]);
+        Response::error('Assento não encontrado para essa sessão', 404);
+      }
+
+      // status numérico: 0 = livre, 1 = reservado, 2 = ocupado
+      $statusAtual = (int)$as['status'];
+      if ($statusAtual !== 0) {
+        $pdo->rollBack();
+        Response::error('Assento não está LIVRE', 409, ['status_atual' => $statusAtual]);
       }
 
       // Cria ingresso (UNIQUE em assento)
@@ -34,8 +102,8 @@ final class Cart {
       $ingIns->execute([$sessaoId, $assentoId]);
       $ingressoId = (int)$pdo->lastInsertId();
 
-      // Marca assento como RESERVADO
-      $upd = $pdo->prepare("UPDATE assento SET status = 'RESERVADO' WHERE id = ?");
+      // Marca assento como RESERVADO (1) e grava horário
+      $upd = $pdo->prepare("UPDATE assento SET status = 1, reservado_em = NOW() WHERE id = ?");
       $upd->execute([$assentoId]);
 
       // Coloca no carrinho
@@ -96,16 +164,20 @@ final class Cart {
                              FOR UPDATE');
       $sel->execute([$carrinhoId, $usuarioId]);
       $row = $sel->fetch();
-      if (!$row) { $pdo->rollBack(); Response::error('Item não encontrado', 404); }
+      if (!$row) {
+        $pdo->rollBack();
+        Response::error('Item não encontrado', 404);
+      }
 
       // Remove do carrinho
       $delC = $pdo->prepare('DELETE FROM carrinho WHERE id = ? AND usuario = ?');
       $delC->execute([$carrinhoId, $usuarioId]);
 
-      // Libera assento e remove ingresso (não pago)
-      $updA = $pdo->prepare("UPDATE assento SET status = 'LIVRE' WHERE id = ?");
+      // Libera assento (volta para 0 = LIVRE)
+      $updA = $pdo->prepare("UPDATE assento SET status = 0, reservado_em = NULL WHERE id = ?");
       $updA->execute([$row['assento_id']]);
 
+      // Remove ingresso (não pago)
       $delI = $pdo->prepare('DELETE FROM ingresso WHERE id = ?');
       $delI->execute([$row['ingresso_id']]);
 
@@ -127,6 +199,9 @@ final class Cart {
     try {
       $pdo->beginTransaction();
 
+      // também limpa reservas vencidas antes de fechar compra
+      self::cleanupExpired($pdo);
+
       // Itens do carrinho com lock
       $sql = "SELECT c.id AS carrinho_id, i.id AS ingresso_id, a.id AS assento_id
                 FROM carrinho c
@@ -137,12 +212,15 @@ final class Cart {
       $st = $pdo->prepare($sql);
       $st->execute([$usuarioId]);
       $items = $st->fetchAll();
-      if (!$items) { $pdo->rollBack(); Response::error('Carrinho vazio', 409); }
+      if (!$items) {
+        $pdo->rollBack();
+        Response::error('Carrinho vazio', 409);
+      }
 
-      // Verifica todos em RESERVADO
+      // Verifica todos em RESERVADO (1)
       $idsAssentos = array_map('intval', array_column($items, 'assento_id'));
       $phAss = implode(',', array_fill(0, count($idsAssentos), '?'));
-      $chk = $pdo->prepare("SELECT COUNT(*) AS q FROM assento WHERE id IN ($phAss) AND status='RESERVADO'");
+      $chk = $pdo->prepare("SELECT COUNT(*) AS q FROM assento WHERE id IN ($phAss) AND status = 1");
       $chk->execute($idsAssentos);
       $q = (int)$chk->fetch()['q'];
       if ($q !== count($idsAssentos)) {
@@ -150,8 +228,8 @@ final class Cart {
         Response::error('Alguns assentos não estão mais reservados', 409);
       }
 
-      // Confirma: assentos -> OCUPADO
-      $upd = $pdo->prepare("UPDATE assento SET status='OCUPADO' WHERE id IN ($phAss)");
+      // Confirma: assentos -> OCUPADO (2)
+      $upd = $pdo->prepare("UPDATE assento SET status = 2, reservado_em = NULL WHERE id IN ($phAss)");
       $upd->execute($idsAssentos);
 
       // Remove do carrinho (mantém ingresso como comprovante)
