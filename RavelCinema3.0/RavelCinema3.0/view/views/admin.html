@@ -1,0 +1,49 @@
+
+<section class="grid">
+  <div class="card" style="grid-column:1 / -1">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <strong>Admin • Notificações • Perfil • Logout</strong>
+      <button id="seed-data" class="btn-primary">Popular dados de exemplo</button>
+    </div>
+  </div>
+
+  <div class="grid grid-3" style="grid-column:1 / -1">
+    <div class="card kpi"><span>Usuários</span> <strong id="kpi-users">0</strong></div>
+    <div class="card kpi"><span>Acessos</span> <strong id="kpi-hits">0</strong></div>
+    <div class="card kpi"><span>Conversão</span> <strong id="kpi-cvr">0%</strong></div>
+  </div>
+
+  <div class="grid grid-2" style="grid-column:1 / -1">
+    <div class="card">
+      <h3>Gráfico de Usuários (linha)</h3>
+      <canvas id="chart-users" height="180"></canvas>
+    </div>
+    <div class="card">
+      <h3>Gráfico de Acessos (barras)</h3>
+      <canvas id="chart-hits" height="180"></canvas>
+    </div>
+  </div>
+
+  <div class="grid grid-3" style="grid-column:1 / -1">
+    <div class="card">
+      <h3>Gestão de Usuários</h3>
+      <table class="table" id="tbl-users">
+        <thead><tr><th>Nome</th><th>Email</th><th>Ações</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Gestão de Conteúdos</h3>
+      <p class="helper">Gerencie banners e anúncios.</p>
+      <button class="btn-primary" id="add-banner">Adicionar Banner</button>
+      <ul id="banners"></ul>
+    </div>
+    <div class="card">
+      <h3>Configurações</h3>
+      <ul class="helper">
+        <li>Segurança</li>
+        <li>Perfis</li>
+      </ul>
+    </div>
+  </div>
+</section>
