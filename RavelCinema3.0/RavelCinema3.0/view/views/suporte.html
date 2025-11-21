@@ -1,0 +1,32 @@
+
+<section class="grid grid-2">
+  <div class="card">
+    <h2>FAQ / Base de Conhecimento</h2>
+    <input id="faq-search" placeholder="Buscar tópicos..." />
+    <ul id="faq-list"></ul>
+  </div>
+  <div class="card">
+    <h2>Fale Conosco</h2>
+    <form class="form" id="support-form">
+      <div>
+        <label>Nome</label>
+        <input name="nome" required />
+      </div>
+      <div>
+        <label>Email</label>
+        <input name="email" type="email" required />
+      </div>
+      <div>
+        <label>Mensagem</label>
+        <textarea name="mensagem" rows="6" required></textarea>
+      </div>
+      <button class="btn-primary">Enviar</button>
+      <p id="support-result" class="helper"></p>
+    </form>
+  </div>
+  <div class="card" style="grid-column:1 / -1">
+    <h3>WhatsApp & Horários</h3>
+    <p class="helper">Chat disponível de 9h às 18h (seg-sex). SLA de resposta: até 2h úteis.</p>
+    <button class="btn-danger" id="open-whatsapp">Abrir WhatsApp</button>
+  </div>
+</section>

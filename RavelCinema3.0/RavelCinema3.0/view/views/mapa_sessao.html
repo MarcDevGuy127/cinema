@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Layout Tutorial</title>
+    <link rel="stylesheet" href="./css/mapa_sessao.css" />
+  </head>
+  <body>
+    <div class="secao_superior">
+      <h1>Mapa da Sessão</h1>
+      <p>Escolha a(s) poltrona(s) que você deseja reservar!</p>
+    </div>
+    <div class="container1">
+      <div class="poltronas_esquerda">
+        <div class="eixo_superior">
+          <span>1</span>
+          <span>2</span>
+        </div>
+        <div class="eixo_lateral">
+          <span>A</span>
+          <span>B</span>
+          <span>C</span>
+          <span>D</span>
+          <span>E</span>
+        </div>
+        <div class="poltrona">A01</div>
+        <div class="poltrona">A02</div>
+
+        <div class="poltrona">B01</div>
+        <div class="poltrona">B02</div>
+
+        <div class="poltrona">C01</div>
+        <div class="poltrona">C02</div>
+
+        <div class="poltrona">D01</div>
+        <div class="poltrona">D02</div>
+
+        <div class="poltrona">E01</div>
+        <div class="poltrona">E02</div>
+      </div>
+
+      <div class="poltronas_centro">
+        <div class="eixo_superior">
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span>6</span>
+          <span>7</span>
+          <span>8</span>
+          <span>9</span>
+          <span>10</span>
+          <span>11</span>
+          <span>12</span>
+          <span>13</span>
+          <span>14</span>
+        </div>
+        <div class="poltrona">A03</div>
+        <div class="poltrona">A04</div>
+        <div class="poltrona">A05</div>
+        <div class="poltrona">A06</div>
+        <div class="poltrona">A07</div>
+        <div class="poltrona">A08</div>
+        <div class="poltrona">A09</div>
+        <div class="poltrona">A10</div>
+        <div class="poltrona">A11</div>
+        <div class="poltrona">A12</div>
+        <div class="poltrona">A13</div>
+        <div class="poltrona">A14</div>
+
+        <div class="poltrona">B03</div>
+        <div class="poltrona">B04</div>
+        <div class="poltrona">B05</div>
+        <div class="poltrona">B06</div>
+        <div class="poltrona">B07</div>
+        <div class="poltrona">B08</div>
+        <div class="poltrona">B09</div>
+        <div class="poltrona">B10</div>
+        <div class="poltrona">B11</div>
+        <div class="poltrona">B12</div>
+        <div class="poltrona">B13</div>
+        <div class="poltrona">B14</div>
+
+        <div class="poltrona">C03</div>
+        <div class="poltrona">C04</div>
+        <div class="poltrona">C05</div>
+        <div class="poltrona">C06</div>
+        <div class="poltrona">C07</div>
+        <div class="poltrona">C08</div>
+        <div class="poltrona">C09</div>
+        <div class="poltrona">C10</div>
+        <div class="poltrona">C11</div>
+        <div class="poltrona">C12</div>
+        <div class="poltrona">C13</div>
+        <div class="poltrona">C14</div>
+
+        <div class="poltrona">D03</div>
+        <div class="poltrona">D04</div>
+        <div class="poltrona">D05</div>
+        <div class="poltrona">D06</div>
+        <div class="poltrona">D07</div>
+        <div class="poltrona">D08</div>
+        <div class="poltrona">D09</div>
+        <div class="poltrona">D10</div>
+        <div class="poltrona">D11</div>
+        <div class="poltrona">D12</div>
+        <div class="poltrona">D13</div>
+        <div class="poltrona">D14</div>
+
+        <div class="poltrona">E03</div>
+        <div class="poltrona">E04</div>
+        <div class="poltrona">E05</div>
+        <div class="poltrona">E06</div>
+        <div class="poltrona">E07</div>
+        <div class="poltrona">E08</div>
+        <div class="poltrona">E09</div>
+        <div class="poltrona">E10</div>
+        <div class="poltrona">E11</div>
+        <div class="poltrona">E12</div>
+        <div class="poltrona">E13</div>
+        <div class="poltrona">E14</div>
+
+        <div id="tela"></div>
+      </div>
+
+      <div class="poltronas_direita">
+        <div class="eixo_superior">
+          <span>15</span>
+          <span>16</span>
+        </div>
+        <div class="poltrona">A15</div>
+        <div class="poltrona">A16</div>
+
+        <div class="poltrona">B15</div>
+        <div class="poltrona">B16</div>
+        
+        <div class="poltrona">C15</div>
+        <div class="poltrona">C16</div>
+        
+        <div class="poltrona">D15</div>
+        <div class="poltrona">D16</div>
+        
+        <div class="poltrona">E15</div>
+        <div class="poltrona">E16</div>
+      </div>
+    </div>
+    <div class="placar">
+      <div class="poltrona_livre"></div>
+      <p>Livre(s)</p>
+      <div class="poltrona_ocupada"></div>
+      <p>Ocupada(s)</p>
+
+      <!--div class="poltrona_especial"></div>
+      <p>Especial</p-->
+
+      <div class="parametros">
+        <p id="parametros">Total: <valor id="valor_parametro">80</valor></p>
+        <p id="parametros">Livre(s): <valor id="valor_parametro">80</valor></p>
+        <p id="parametros">Ocupada(s): <valor id="valor_parametro">0</valor></p>
+      </div>
+    </div>
+    <footer>
+      <p>
+        &copy; Desenvolvido por
+        <a href="https://www.github.com/MarcDevGuy127">Marcelo Henrique</a>.
+      </p>
+    </footer>
+  </body>
+</html>
