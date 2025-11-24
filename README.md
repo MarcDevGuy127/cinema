@@ -25,10 +25,13 @@ Durante o desenvolvimento deste projeto, fizemos os seguintes materiais:
 * **config/**: diretório onde está localizado todos os arquivos relacionados as configurações de ambiente do projeto.
 
 # Autores e Papéis
-* Thiago Galego - Front-end
-* Marcelo Henrique - Front-end
-* Ravel Camargo - Back-end
-* Leonardo Sadi - Back-end
+| Integrantes | GitHub | Equipe |
+| --- | --- | --- |
+| Marcelo Henrique | [`@MarcDevGuy127`](https://www.github.com/MarcDevGuy127) | Front-end |
+| Thiago Galego | [`@ThiGalego`](https://github.com/ThiGalego)| Front-end |
+| Ravel Camargo | [`@ravelrcamargo`](https://www.github.com/ravelrcamargo) | Back-end |
+| Leornado Sadi | [`@leo`](https://www.github.com/730s)| Back-end |
+
 # Linguagens e Ferramentas
 <div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" height="40" alt="html5 logo"  />
